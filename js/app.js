@@ -63,14 +63,20 @@ function writeGPLFormat(name, colors){
 	fileheader += '#\n';
 
 	for (var i=0; i<colors.length; i++) {
+		
 		colorvalues += "<span style='background: rgba(";
 		for(var r=0; r<colors[i].length; r++) {
 			colorvalues += colors[i][r] + ', ';
 		}
 		colorvalues += "1);'>";
-//		colorvalues += "<span style='background: rgb(" + colors[0] + ");'>";
-//		colorvalues += colors[0] + colors[1] + colors[2] + '<br />'; //NaN ??
-		colorvalues += "</span>";
+		colorvalues += "</span>&nbsp; ";
+
+		for(var r=0; r<colors[i].length; r++) {
+			colorvalues += colors[i][r] + ' ';
+		}
+
+		colorvalues += '<br />';
+
 	}
 	//FIXME REPAIR HELP
 	output = fileheader + colorvalues;
@@ -80,13 +86,13 @@ function writeGPLFormat(name, colors){
 
 function loadFile(svgfileurl){
 	var url = (svgfileurl);
-	console.log(url);
+	$("#debug").html ("<h4>loading " + url + "</h4>");
 	$.get( url, function( data ) {
 	  //process data;
 	  convertColors(data);
 	  setTimeout(function(){
-	  			savePalette();
-	  		}, 500);
+  			savePalette();
+  		}, 200);
 	});
 	
 }

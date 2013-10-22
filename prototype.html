@@ -52,23 +52,27 @@
 			<p>Swatcheroo is an experiment to read an svg file and create a color swatch / palette out of rectangle elements contained in it.</p>
 
 			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input">
-			      <input type="text" class="form-control" placeholder="name" id="paletteName">
-			    </div><!-- /input -->
-			    <div class="input-group">
-			      <input type="text" class="form-control" placeholder="URL" id="svgFile" value="https://dl.dropboxusercontent.com/u/631446/raarr.svg">
-			      <span class="input-group-btn">
-			        <button class="btn btn-default" type="button" id="loadFile">Load</button>
-			      </span>
-			    </div><!-- /input-group -->
-			    <div class="input">
-			      <pre class="form-control" rows="20" id="debug"></pre>
-			    </div><!-- /input -->
-			  </div><!-- /.col-lg-6 -->
-			  <div class="col-lg-6">
-			    
-			  </div><!-- /.col-lg-6 -->
+  
+  				<div class="col-md-4">
+
+					 <form role="form" onsubmit="return false;">
+					  <div class="form-group">
+					    <label for="paletteName">Palette name</label>
+					    <input type="text" class="form-control" placeholder="name" id="paletteName">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputPassword1">Load svg file</label>
+					    <input type="text" class="form-control" placeholder="URL" id="svgFile" value="https://dl.dropboxusercontent.com/u/631446/raarr.svg">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputFile">.gpl file</label>
+					    <pre class="form-control" rows="20" id="debug"></pre>
+					    <p class="help-block">Example block-level help text here.</p>
+					  </div>
+					  
+					  <button class="btn btn-default" type="submit" id="loadFile">Load</button>
+					</form>
+				</div>
 			</div><!-- /.row -->
 
 
