@@ -31,21 +31,31 @@ function convertColors(svgfile) {
 
 
 function hext2rgb(h) {
-	// expecting the hex (h) value to start with '#'. if it be like it don't, shit the bed and go home unseen.
-	/*
+	// Firefox says rgb values, webkit says it's hex.
 	if(h.substring(0,1) !== '#') {
-		console.log(h);
-		console.log('oh shit.');
-		return;
+		console.log('oh shit: ' + h);
+		//this is terrible
+		h = h.substring(4);
+		h = h.substr(0, h.length-1);
+		h = h.split(',');
+
+		var c = [];
+
+		for(i in h) {
+			c[i] = h[i];
+		}
+		return c;
+		//update 0.23: awww yiss. DANGER ZONE!
+	} else {
+		
+		console.log('alright: ' + h);
+		h = h.substring(1,6) + '';
+
+		var r = String(parseInt(h.substring(0,2),16));
+		var g = parseInt(h.substring(2,4),16);
+		var b = parseInt(h.substring(4,6),16);
+		return [r, g, b];
 	}
-	*/
-
-	h = h.substring(1,6);
-
-	var r = parseInt(h.substring(0,2),16);
-	var g = parseInt(h.substring(2,4),16);
-	var b = parseInt(h.substring(4,6),16);
-	return [r, g, b];
 }
 
 function drawHTMLPreview() {
