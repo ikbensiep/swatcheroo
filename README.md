@@ -1,9 +1,11 @@
 swatcheroo
 ==========
 
-v0.1: Hello Wrlod
+v0.1: Hello Wrlod!
 
-A tool to create Inkscape / GIMP color swatches in your browser.
+The idea of Swatcheroo is to create a tool to make Inkscape / GIMP color swatches in your browser.
+The current implementation consists of a plain html file with embedded svg to demonstrate the idea. 
+It works.
 
 v0.2 TODO:
 - load, read svg xml from remote URL using <input>
