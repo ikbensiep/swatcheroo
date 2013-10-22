@@ -1,78 +1,51 @@
-<html>
-	<head>
-		<style type="text/css">
-			body {
-				background: #ccc;
-			}
-			svg {
-				background: #fff;
-			}
-			#test {
-				width: 100px;
-				height: 20px;
-			}
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-			#debug {
-				height: 200px;
-			}
-		</style>
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-		<script>
-		function convertColors() {
-			var hexcolors = [];
-			var rgbcolors = [];
-
-			var svg = document.getElementsByTagName('svg')[0];
-			var boxes = svg.getElementsByTagName('rect');
-			
-			// store hex colors in array
-			for (var i = 0; i < boxes.length; i++) {
-				hexcolors[i] = boxes[i].style['fill'];
-				rgbcolors.push(hext2rgb(hexcolors[i]));
-			}
-
-			document.getElementById("debug").value = writeGPLFormat("test", rgbcolors);
-
-		}
-
-
-		function hext2rgb(h) {
-			// expecting the hex value to start with '#'. if it be like it don't, shit the bed and go home unseen.
-			if(h.substring(0,1) !== '#') {
-				console.log('oh shit.');
-				return;
-			}
-			h = h.substring(1,6);
-			var r = parseInt(h.substring(0,2),16);
-			var g = parseInt(h.substring(2,4),16);
-			var b = parseInt(h.substring(4,6),16);
-			return r + ' ' + g + ' ' + b;
-		}
-
-		function writeGPLFormat(name, colors){
-			var fileheader = '';
-			var colorvalues = '';
-			var output = ''
-
-			fileheader += 'GIMP Palette' + '\n';
-			fileheader += 'Name: ' + name + '\n';
-			fileheader += 'Columns: ' + name + '\n';
-			fileheader += '#\n';
-
-			for (var i=0; i<colors.length; i++) {
-				colorvalues += colors[i] + '\n';
-			}
-
-			output = fileheader + colorvalues;
-			return output;
-
-		}
-
-		</script>
+		<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <!--
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	-->
+		<script src="js/app.js"></script>
 
 	</head>
 	<body>
-		
+	<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Swatcheroo</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Swatches <!--<span class="caret"></span>--> </a>
+            </li>
+            <li>
+              <a href="../help/">Help</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://sibrandhoekstra.com/" target="_blank">@ikbensiep</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="container">
 		<h4>Swatcheroo</h4>
 		<p><a href="http://www.inkscape.org">Inkscape</a> uses GIMP Pallette (.gpl) files to build palettes.</p>
 		<p>Swatcheroo is an experiment to read an svg file and create a color swatch / palette out of rectangle elements contained in it.</p>
@@ -81,6 +54,7 @@
 		<textarea id="debug"></textarea>
 		<hr />
 		<h6>SVG File:</h6>
+
 		<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" version="1.1" inkscape:version="0.48.2 r9819">
 		  <defs/>
 		  <metadata>
@@ -152,8 +126,28 @@
 			 
 		  </g>
 		</svg>
+	</div><!-- container -->
 		<script>
 			convertColors();	
 		</script>
-	</body>
+	
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+ 
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    	-->
+    </body>
 </html>
+

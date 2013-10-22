@@ -1,0 +1,14 @@
+body {
+	background: #ccc;
+}
+svg {
+	background: #fff;
+}
+#test {
+	width: 100px;
+	height: 20px;
+}
+
+#debug {
+	height: 200px;
+}
