@@ -8,6 +8,11 @@ v0.3 TODO:
 - make interface to display .gpl next to detected colors
 - make .gpl downloadable
 
+known issues
+------------
+
+converstion from hex to rgb is buggy: resulting b values don't match actual values.
+
 
 changelog
 ---------
