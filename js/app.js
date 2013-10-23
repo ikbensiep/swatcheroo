@@ -45,7 +45,6 @@ function hext2rgb(h) {
 			c[i] = h[i];
 		}
 		return c;
-		//update 0.23: awww yiss. DANGER ZONE!
 	} else {
 		
 		

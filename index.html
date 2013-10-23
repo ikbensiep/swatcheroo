@@ -15,6 +15,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	
 		<script src="js/app.js"></script>
+    
 
 	</head>
 	<body>
@@ -79,9 +80,14 @@
 					</form>
 				</div>
 				<div class="col-md-8">
-					<h4>SVG file preview</h4>
+					<h4 id='status'>SVG file preview</h4>
 					<div id="svgembed">
 					</div>
+          <article>
+            <div id="holder"></div> 
+            <p id="status" class="success">File API &amp; FileReader available</p>
+            <p>Drag an image from your desktop on to the drop zone above to see the browser read the contents of the file and use it as the background - without uploading the file to any servers.</p>
+          </article>
 				</div>
 			</div><!-- /.row -->
 
@@ -89,6 +95,7 @@
 			
 		</div><!-- row -->
 	</div><!-- container -->
+    <script src="js/dropfile.js"></script>
 		<script>
 		init();
 		</script>
