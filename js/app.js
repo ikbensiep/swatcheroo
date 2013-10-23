@@ -99,6 +99,8 @@ function loadFile(svgfileurl){
 
 	$.get( url, function( data ) {
 	  	//process data;
+	  	console.warn(typeof data + ": ajaxed");
+	  	console.log(data);
 	  	convertColors(data);
 	  	$('#svgembed').load(url);
 	  	setTimeout(function(){

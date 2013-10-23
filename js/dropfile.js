@@ -17,14 +17,16 @@ holder.ondrop = function (e) {
   var file = e.dataTransfer.files[0],
   reader = new FileReader();
   reader.onload = function (event) {
-    console.warn(event.target);
+    //console.warn(event.target);
     holder.style.background = 'url(' + event.target.result + ') no-repeat center';
-    console.warn("testing");
+    //console.warn("testing");
     var svg = $(event.target.result);
+    console.warn(typeof svg + ": dropped");
     console.log(svg);
+    convertColors(svg);
   };
 
-  reader.readAsDataURL(file);
+  reader.readAsText(file);
 
   return false;
 };
