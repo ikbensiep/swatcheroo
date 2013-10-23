@@ -3,15 +3,17 @@ swatcheroo
 
 v0.3 TODO:
 - add simple server enabling user to upload svg
+- UI: implement drag/drop 
 - make xmlhttp request to load uploaded svg into html page
 - make interface to display .gpl next to detected colors
 - make .gpl downloadable
+
 
 changelog
 ---------
 
 v0.21 TODO: 
-- UI: implement drag/drop 
+
 - UI: implement name input (palette)
 - UI: implement name input (color)
 
