@@ -97,13 +97,19 @@ function writeGPLFormat(name, colors){
 function loadFile(svgfileurl){
 	var url = (svgfileurl);
 	$("#debug").html ("<h4>loading " + url + "</h4>");
+
 	$.get( url, function( data ) {
-	  //process data;
-	  convertColors(data);
-	  setTimeout(function(){
+	  	//process data;
+	  	convertColors(data);
+	  	setTimeout(function(){
   			savePalette();
   		}, 200);
 	});
+
+	
+	$('#svgembed').load(url);
+	
+	
 	
 }
 

@@ -10,10 +10,11 @@ svg {
 }
 
 #debug {
-	height: 200px;
+	height: 400px;
+	overflow: auto;
 }
 
-span {
+#debug span {
 	opacity: 0.1;
 	display: inline-block; 
 	width: 1em;
@@ -21,7 +22,12 @@ span {
 	
 }
 
-pre:hover span {
+#debug:hover span {
 	opacity: 1;
 	transition: all .2s;
 };
+
+#svgembed {
+	height: 500px;
+	width: 500px;
+}
