@@ -48,12 +48,12 @@ function hext2rgb(h) {
 		//update 0.23: awww yiss. DANGER ZONE!
 	} else {
 		
-		console.log('alright: ' + h);
-		h = h.substring(1,6) + '';
-
-		var r = String(parseInt(h.substring(0,2),16));
-		var g = parseInt(h.substring(2,4),16);
-		var b = parseInt(h.substring(4,6),16);
+		
+		h = h.substr(1,6) + '';
+		var r = parseInt(h.substr(0,2),16);
+		var g = parseInt(h.substr(2,2),16);
+		var b = parseInt(h.substr(4,2),16);
+		console.log([r, g, b]);
 		return [r, g, b];
 	}
 }
@@ -101,13 +101,14 @@ function loadFile(svgfileurl){
 	$.get( url, function( data ) {
 	  	//process data;
 	  	convertColors(data);
+	  	$('#svgembed').load(url);
 	  	setTimeout(function(){
   			savePalette();
   		}, 200);
 	});
 
 	
-	$('#svgembed').load(url);
+	
 	
 	
 	
