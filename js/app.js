@@ -1,67 +1,72 @@
-var hexcolors = [];
-var rgbcolors = [];
+
 var palettename;
 var svgfileurl;
 var svgfile;
 
 function init() {
-$('#loadFile').click(function(){
-	svgfileurl = $("#svgFile").val();
-	loadFile(svgfileurl);
-});
+	$('#loadFile').click(function(){
+		svgfileurl = $("#svgFile").val();
+		loadFile(svgfileurl);
+	});
 }
 
 function convertColors(svgfile) {
 	
+	var boxes = document.getElementsByTagNameNS('http://www.w3.org/2000/svg','rect');
 
-	//TODO: implement ajax request for remote svg files
-	//TODO: implement sever to accept file uploads
-	
-	var boxes = svgfile.getElementsByTagName('rect');
-	
+	var hexcolors = [];
+	var rgbcolors = [];
 	// store hex colors in array
 	for (var i = 0; i < boxes.length; i++) {
 		hexcolors[i] = boxes[i].style['fill'];
-		rgbcolors.push(hext2rgb(hexcolors[i]));
+		rgbcolors.push(hex2rgb(hexcolors[i]));
 	}
-	console.log(rgbcolors);
+
+	palettename =  $('#paletteName').val();
 	
+	$("#debug").html(writeGPLFormat(palettename, rgbcolors, true));
+	$("#saveGPLFile").attr("href", "data:application/octet-stream;base64," + window.btoa(writeGPLFormat(palettename, rgbcolors)));
+	$("#saveGPLFile").attr("class", "btn btn-primary");
 
 }
 
-
-function hext2rgb(h) {
+function hex2rgb(hex) {
 	// Firefox says rgb values, webkit says it's hex.
-	if(h.substring(0,1) !== '#') {
-		console.log('oh shit: ' + h);
+	if(hex.substring(0,1) !== '#') {
+		
 		//this is terrible
-		h = h.substring(4);
-		h = h.substr(0, h.length-1);
-		h = h.split(',');
+		hex = hex.substring(4);
+		hex = hex.substr(0, hex.length-1);
+		hex = hex.split(',');
 
-		var c = [];
+		var colors = [];
 
-		for(i in h) {
-			c[i] = h[i];
+		for(i in hex) {
+			colors[i] = hex[i];
 		}
-		return c;
+		return colors;
+
 	} else {
 		
+		hex = hex.substr(1,6) + '';
+		var r = parseInt(hex.substr(0,2),16);
+		var g = parseInt(hex.substr(2,2),16);
+		var b = parseInt(hex.substr(4,2),16);
 		
-		h = h.substr(1,6) + '';
-		var r = parseInt(h.substr(0,2),16);
-		var g = parseInt(h.substr(2,2),16);
-		var b = parseInt(h.substr(4,2),16);
-		console.log([r, g, b]);
 		return [r, g, b];
 	}
 }
 
-function drawHTMLPreview() {
 
+
+function formatNicely(num){
+	num = String(num);
+	if(num.length == 1) num = '  ' + num;
+	if(num.length == 2) num = ' ' + num;
+	return num;
 }
 
-function writeGPLFormat(name, colors){
+function writeGPLFormat(name, colors, html){
 	var fileheader = '';
 	var colorvalues = '';
 	var output = ''
@@ -72,50 +77,36 @@ function writeGPLFormat(name, colors){
 	fileheader += '#\n';
 
 	for (var i=0; i<colors.length; i++) {
+		if(html) {
+			colorvalues += "<span style='background: rgba(";
+			for(var r=0; r<colors[i].length; r++) {
+				colorvalues += colors[i][r] + ', ';
+			}
+			colorvalues += "1);'>";
+			colorvalues += "</span>&nbsp; ";
+		}
+		for(var r=0; r<colors[i].length; r++) {
+			colorvalues += formatNicely(colors[i][r]) + ' ';	
+		}
+		colorvalues += "\n";
 		
-		colorvalues += "<span style='background: rgba(";
-		for(var r=0; r<colors[i].length; r++) {
-			colorvalues += colors[i][r] + ', ';
-		}
-		colorvalues += "1);'>";
-		colorvalues += "</span>&nbsp; ";
-
-		for(var r=0; r<colors[i].length; r++) {
-			colorvalues += colors[i][r] + ' ';
-		}
-
-		colorvalues += '<br />';
 
 	}
 	//FIXME REPAIR HELP
+
 	output = fileheader + colorvalues;
 	return output;
 
 }
 
 function loadFile(svgfileurl){
+	//TODO show loader, remove loader in successhandler
 	var url = (svgfileurl);
-	$("#debug").html ("<h4>loading " + url + "</h4>");
-
 	$.get( url, function( data ) {
-	  	//process data;
-	  	console.warn(typeof data + ": ajaxed");
-	  	console.log(data);
-	  	convertColors(data);
 	  	$('#svgembed').load(url);
 	  	setTimeout(function(){
-  			savePalette();
-  		}, 200);
+	  		convertColors(data);
+	  	}, 500);
 	});
-
-	
-	
-	
-	
-	
 }
 
-function savePalette() {
-	palettename =  $('#paletteName').val();
-	$("#debug").html(writeGPLFormat(palettename, rgbcolors));
-}

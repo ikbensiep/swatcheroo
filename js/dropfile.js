@@ -1,17 +1,18 @@
-var holder = document.getElementById('holder'),
-    state = document.getElementById('status');
+var svgmachine;
+var holder = document.getElementById('holder');
+var state =  document.getElementById('status');
 
 if (typeof window.FileReader === 'undefined') {
-  state.className = 'fail';
+  $(holder).toggleClass('fail');
+  $(status).text('Error loading File and/or FileReader API');
 } else {
-  state.className = 'success';
-  state.innerHTML = 'File API & FileReader available';
+  $(holder).toggleClass('success');
 }
  
-holder.ondragover = function () { this.className = 'hover'; return false; };
-holder.ondragend = function () { this.className = ''; return false; };
+holder.ondragover = function () { $(holder).addClass('file-hover'); return false; };
+holder.ondragend = function () { $(holder).removeClass('well'); return false; };
 holder.ondrop = function (e) {
-  this.className = '';
+  this.className = 'well file-dropped';
   e.preventDefault();
 
   var file = e.dataTransfer.files[0],
@@ -21,12 +22,15 @@ holder.ondrop = function (e) {
     holder.style.background = 'url(' + event.target.result + ') no-repeat center';
     //console.warn("testing");
     var svg = $(event.target.result);
-    console.warn(typeof svg + ": dropped");
-    console.log(svg);
+    
+    
+    $('#svgembed').html(svg);
+    
     convertColors(svg);
   };
 
   reader.readAsText(file);
-
+  
+  
   return false;
 };

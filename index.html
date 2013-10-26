@@ -3,26 +3,29 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Swatcheroo</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
-
-		<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/main.css">
         
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	
-		<script src="js/app.js"></script>
-    
+       
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
 
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/app.js"></script>
 	</head>
 	<body>
 	<div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Swatcheroo</a>
+          <a href="./" class="navbar-brand">Swatcheroo</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -32,10 +35,13 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Swatches <!--<span class="caret"></span>--> </a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Swatches</a>
+              <ul class="dropdown-menu">
+              <li><a>coming soon!</a></li>
+              </ul>
             </li>
             <li>
-              <a href="../help/">Help</a>
+              <a href="./help.html">Help</a>
             </li>
           </ul>
 
@@ -45,50 +51,81 @@
 
         </div>
       </div>
-    </div>
+  </div>
+
     <div class="container">
-    	<div class="row">
-			<h4>Swatcheroo</h4>
-			<p><a href="http://www.inkscape.org">Inkscape</a> uses GIMP Pallette (.gpl) files to build palettes.</p>
-			<p>Swatcheroo is an experiment to read an svg file and create a color swatch / palette out of rectangle elements contained in it.</p>
 
 			<div class="row">
-  
-  				<div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+        				<div class="col-md-4">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">1. Load svg file</h3>
+                      </div>
+                      
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Drop .svg file below</label>
+                          <div id="holder" class="well">
+                            <p id="status"></p>
+                            <i class="fa fa-file-o fa-5x"></i>
+                            <i class="fa fa-file-text-o fa-5x"></i>
+                            <i class="fa fa-exclamation-triangle fa-5x"></i>
+                          </div> 
+                        </div>
+                      
+                        <div class="divider"><p><span>or</span></p></div>
 
-					 <form role="form" onsubmit="return false;">
-					  <div class="form-group">
-					    <label for="paletteName">Palette name</label>
-					    <input type="text" class="form-control" placeholder="name" id="paletteName">
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputPassword1">Load svg file</label>
-					    <div class="input-group">
-					    	<input type="text" class="form-control" placeholder="URL" id="svgFile" value="http://upload.wikimedia.org/wikipedia/commons/6/66/VGA_palette_with_black_borders.svg" />
-					    	<span class="input-group-btn">
-					    		<button class="btn btn-default" type="submit" id="loadFile">Load</button>
-							</span>
-						</div>
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputFile">.gpl file</label>
-					    <pre class="form-control" rows="20" id="debug"></pre>
-					   
-					  </div>
-					  
-					  
-					</form>
-				</div>
-				<div class="col-md-8">
-					<h4 id='status'>SVG file preview</h4>
-					<div id="svgembed">
-					</div>
-          <article>
-            <div id="holder"></div> 
-            <p id="status" class="success">File API &amp; FileReader available</p>
-            <p>Drag an image from your desktop on to the drop zone above to see the browser read the contents of the file and use it as the background - without uploading the file to any servers.</p>
-          </article>
-				</div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Load svg file from the web</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="URL" id="svgFile" value="http://upload.wikimedia.org/wikipedia/commons/6/66/VGA_palette_with_black_borders.svg" />
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" id="loadFile">Load</button>
+                              </span>
+                            </div>
+                          </div>
+                      </div>
+                    </div> <!-- panel -->
+        				</div> <!-- col-md-4 -->
+        				<div class="col-md-4">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" >2. Preview svg file</h3>
+                    </div>
+                    <div class="panel-body">
+          				      <h4></h4>
+          					    <div id="svgembed">
+          				      </div>
+                    </div>
+                  </div>
+        				</div>
+                <div class="col-md-4">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title" >3. Customize</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="name" id="paletteName">
+                        </div>
+                        <div class="form-group">
+                          <label for="">Here's your .gpl file</label>
+                          <pre class="form-control" id="debug"></pre>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-md-2 col-md-offset-10">
+                <a class="btn btn-default disabled" id="saveGPLFile" href="#"><i class="fa fa-arrow-down"></i> download</a>
+              </div>
+            </div>
+          </div>
+        </div>
 			</div><!-- /.row -->
 
 
