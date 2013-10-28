@@ -27,7 +27,7 @@ function convertColors(svgfile) {
 	$("#debug").html(writeGPLFormat(palettename, rgbcolors, true));
 	$("#saveGPLFile").attr("href", "data:application/octet-stream;base64," + window.btoa(writeGPLFormat(palettename, rgbcolors)));
 	$("#saveGPLFile").attr("class", "btn btn-primary");
-
+	$("#saveGPLFile").attr("download", palettename + ".gpl"); 
 }
 
 function hex2rgb(hex) {
