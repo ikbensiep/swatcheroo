@@ -1,4 +1,3 @@
-
 var palettename;
 var svgfileurl;
 var svgfile;
@@ -109,4 +108,3 @@ function loadFile(svgfileurl){
 	  	}, 500);
 	});
 }
-
